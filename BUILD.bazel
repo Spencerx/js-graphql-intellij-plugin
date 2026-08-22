@@ -142,7 +142,6 @@ exports_files(
 
 ### auto-generated section `dev content intellij.graphql` start
 dev_dist_plugin_content(
-    name = "graphql_dev_content",
     content_modules = [
         "//plugins/js-graphql/javascript",
         "//plugins/js-graphql/langInjection",
@@ -151,12 +150,10 @@ dev_dist_plugin_content(
     ],
     descriptor_module = ":graphql",
     libraries = [
-        "@lib//:kotlin-stdlib",
         "@ultimate_lib//:graphql-libraries-atlassian-commonmark",
         "@ultimate_lib//:graphql-libraries-graphql-java-dataloader",
         "@ultimate_lib//:graphql-libraries-io-github-cdimascio-dotenv-kotlin",
         "@ultimate_lib//:graphql-libraries-reactivestreams-reactive-streams",
     ],
-    visibility = ["//visibility:public"],
 )
 ### auto-generated section `dev content intellij.graphql` end
