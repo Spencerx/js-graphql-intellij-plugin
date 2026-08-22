@@ -151,12 +151,11 @@ dev_dist_plugin_content(
     ],
     descriptor_module = ":graphql",
     libraries = [
-        "@lib//:org.jetbrains.kotlin/kotlin-stdlib-2.4.10-RC2.jar",
-        "@ultimate_lib//:com.graphql-java/java-dataloader-2.2.3.jar",
-        "@ultimate_lib//:io.github.cdimascio/dotenv-java-3.2.0.jar",
-        "@ultimate_lib//:io.github.cdimascio/dotenv-kotlin-6.5.1.jar",
-        "@ultimate_lib//:org.commonmark/commonmark-0.17.0.jar",
-        "@ultimate_lib//:org.reactivestreams/reactive-streams-1.0.4.jar",
+        "@lib//:kotlin-stdlib",
+        "@ultimate_lib//:graphql-libraries-atlassian-commonmark",
+        "@ultimate_lib//:graphql-libraries-graphql-java-dataloader",
+        "@ultimate_lib//:graphql-libraries-io-github-cdimascio-dotenv-kotlin",
+        "@ultimate_lib//:graphql-libraries-reactivestreams-reactive-streams",
     ],
     visibility = ["//visibility:public"],
 )
