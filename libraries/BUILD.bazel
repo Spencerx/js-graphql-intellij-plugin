@@ -7,6 +7,14 @@ jvm_library(
         [],
         allow_empty = True,
     ),
+    content_module_jar = True,
+    content_module_jar_libraries = [
+        # do not sort,
+        "@ultimate_lib//:graphql-libraries-atlassian-commonmark",
+        "@ultimate_lib//:graphql-libraries-graphql-java-dataloader",
+        "@ultimate_lib//:graphql-libraries-io-github-cdimascio-dotenv-kotlin",
+        "@ultimate_lib//:graphql-libraries-reactivestreams-reactive-streams",
+    ],
     module_name = "intellij.graphql.libraries",
     resource_strip_prefix = "resources",
     resources = glob(
