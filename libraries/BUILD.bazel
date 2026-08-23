@@ -1,3 +1,4 @@
+load("@community//platform/build-scripts/bazel-rules:content_module_jar.bzl", "content_module_jar")
 load("@rules_jvm//:jvm.bzl", "jvm_library")
 
 ### auto-generated section `build intellij.graphql.libraries` start
@@ -7,14 +8,6 @@ jvm_library(
         [],
         allow_empty = True,
     ),
-    content_module_jar = True,
-    content_module_jar_libraries = [
-        # do not sort,
-        "@ultimate_lib//:graphql-libraries-atlassian-commonmark",
-        "@ultimate_lib//:graphql-libraries-graphql-java-dataloader",
-        "@ultimate_lib//:graphql-libraries-io-github-cdimascio-dotenv-kotlin",
-        "@ultimate_lib//:graphql-libraries-reactivestreams-reactive-streams",
-    ],
     module_name = "intellij.graphql.libraries",
     resource_strip_prefix = "resources",
     resources = glob(
@@ -35,6 +28,17 @@ jvm_library(
         "@ultimate_lib//:graphql-libraries-io-github-cdimascio-dotenv-kotlin",
         "@ultimate_lib//:graphql-libraries-reactivestreams-reactive-streams",
     ],
+)
+
+content_module_jar(
+    libraries = [
+        # do not sort,
+        "@ultimate_lib//:graphql-libraries-atlassian-commonmark",
+        "@ultimate_lib//:graphql-libraries-graphql-java-dataloader",
+        "@ultimate_lib//:graphql-libraries-io-github-cdimascio-dotenv-kotlin",
+        "@ultimate_lib//:graphql-libraries-reactivestreams-reactive-streams",
+    ],
+    module = ":libraries",
 )
 
 jvm_library(
