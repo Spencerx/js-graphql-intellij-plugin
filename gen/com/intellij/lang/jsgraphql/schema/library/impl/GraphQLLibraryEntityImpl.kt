@@ -95,7 +95,7 @@ internal class GraphQLLibraryEntityImpl(private val dataSource: GraphQLLibraryEn
       if (this.entitySource != dataSource.entitySource) this.entitySource = dataSource.entitySource
       if (this.identifier != dataSource.identifier) this.identifier = dataSource.identifier
       if (this.displayName != dataSource.displayName) this.displayName = dataSource.displayName
-      if (this.description != dataSource?.description) this.description = dataSource.description
+      if (this.description != dataSource.description) this.description = dataSource.description
       if (this.attachmentScope != dataSource.attachmentScope) this.attachmentScope = dataSource.attachmentScope
       if (this.roots != dataSource.roots) this.roots = dataSource.roots.toMutableSet()
       updateChildToParentReferences(parents)
