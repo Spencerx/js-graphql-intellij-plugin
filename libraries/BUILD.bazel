@@ -66,6 +66,7 @@ exports_files(
     [
         "intellij.graphql.libraries.iml",
         "resources/intellij.graphql.libraries.xml",
+        "module-content.yaml",
     ],
     visibility = ["//visibility:public"],
 )
