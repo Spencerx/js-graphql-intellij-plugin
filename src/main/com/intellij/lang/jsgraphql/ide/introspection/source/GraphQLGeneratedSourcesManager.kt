@@ -35,7 +35,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.ModificationTracker
 import com.intellij.openapi.util.SimpleModificationTracker
 import com.intellij.openapi.util.io.FileUtil
-import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.openapi.vfs.StandardFileSystems
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiDocumentManager
@@ -131,7 +131,7 @@ class GraphQLGeneratedSourcesManager(
   }
 
   fun createGeneratedSourcesScope(): GlobalSearchScope {
-    val dir = LocalFileSystem.getInstance().findFileByPath(generatedSdlDirPath)
+    val dir = StandardFileSystems.local().findFileByPath(generatedSdlDirPath)
               ?: return GlobalSearchScope.EMPTY_SCOPE
     return GlobalSearchScopes.directoryScope(project, dir, false)
   }
@@ -477,8 +477,8 @@ class GraphQLGeneratedSourcesManager(
         return@mapNotNull null
       }
 
-      val sourceFile = LocalFileSystem.getInstance().findFileByPath(sourcePath)
-      val outputFile = LocalFileSystem.getInstance().findFileByPath(outputPath)
+      val sourceFile = StandardFileSystems.local().findFileByPath(sourcePath)
+      val outputFile = StandardFileSystems.local().findFileByPath(outputPath)
       if (sourceFile == null || outputFile == null) {
         return@mapNotNull null
       }

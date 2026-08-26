@@ -40,7 +40,7 @@ import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.util.Key
 import com.intellij.openapi.util.ModificationTracker
 import com.intellij.openapi.util.SimpleModificationTracker
-import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.openapi.vfs.StandardFileSystems
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VirtualFileManager
 import com.intellij.openapi.vfs.ex.temp.TempFileSystem
@@ -243,7 +243,7 @@ class GraphQLConfigProvider(private val project: Project, coroutineScope: Corout
       return TempFileSystem.getInstance().findFileByPath(path)
     }
 
-    return LocalFileSystem.getInstance().findFileByPath(path)
+    return StandardFileSystems.local().findFileByPath(path)
   }
 
   private fun getContentDependentOverridePath(file: PsiFile): GraphQLConfigOverridePath? {

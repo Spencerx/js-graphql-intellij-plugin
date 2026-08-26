@@ -8,7 +8,7 @@ import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.io.FileUtil
-import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.openapi.vfs.StandardFileSystems
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.GlobalSearchScopes
@@ -51,7 +51,7 @@ class GraphQLRemoteSchemasRegistry(private val project: Project) {
   fun getSourceFile(file: VirtualFile?): VirtualFile? {
     return file
       ?.let { getSourcePath(it) }
-      ?.let { runReadAction { LocalFileSystem.getInstance().findFileByPath(it) } }
+      ?.let { runReadAction { StandardFileSystems.local().findFileByPath(it) } }
   }
 
   fun isRemoteSchemaFile(virtualFile: VirtualFile?): Boolean {
@@ -62,7 +62,7 @@ class GraphQLRemoteSchemasRegistry(private val project: Project) {
   }
 
   fun createRemoteIntrospectionScope(): GlobalSearchScope {
-    val dir = LocalFileSystem.getInstance().findFileByPath(remoteSchemasDirPath)
+    val dir = StandardFileSystems.local().findFileByPath(remoteSchemasDirPath)
               ?: return GlobalSearchScope.EMPTY_SCOPE
     return GlobalSearchScopes.directoryScope(project, dir, false)
   }

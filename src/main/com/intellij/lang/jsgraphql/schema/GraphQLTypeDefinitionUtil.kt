@@ -17,7 +17,7 @@ import com.intellij.lang.jsgraphql.types.language.SourceLocation
 import com.intellij.lang.jsgraphql.types.language.UnionTypeExtensionDefinition
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.openapi.vfs.StandardFileSystems
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.ex.temp.TempFileSystem
 import com.intellij.openapi.vfs.findPsiFile
@@ -88,7 +88,7 @@ fun GraphQLError.findElement(project: Project): PsiElement? =
   node?.findElement(project) ?: locations?.firstNotNullOfOrNull { it.findElement(project) }
 
 private fun SourceLocation.findVirtualFile(): VirtualFile? {
-  var file = LocalFileSystem.getInstance().findFileByPath(sourceName)?.takeIf { it.isValid }
+  var file = StandardFileSystems.local().findFileByPath(sourceName)?.takeIf { it.isValid }
   if (file == null && ApplicationManager.getApplication().isUnitTestMode) {
     file = TempFileSystem.getInstance().findFileByPath(sourceName)
   }

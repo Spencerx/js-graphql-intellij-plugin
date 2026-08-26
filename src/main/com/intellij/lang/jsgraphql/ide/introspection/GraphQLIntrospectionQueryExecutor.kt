@@ -25,7 +25,7 @@ import com.intellij.openapi.options.advanced.AdvancedSettings
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.io.FileUtil
 import com.intellij.openapi.util.registry.Registry
-import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.openapi.vfs.VirtualFileManager
 import com.intellij.platform.ide.progress.withBackgroundProgress
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -113,7 +113,7 @@ class GraphQLIntrospectionQueryExecutor(private val project: Project, private va
     try {
       val filePath = Paths.get(FileUtil.toSystemDependentName(schemaPath))
       val dirPath = filePath.parent.also { Files.createDirectories(it) }
-      val dir = if (dirPath != null) LocalFileSystem.getInstance().refreshAndFindFileByNioFile(dirPath) else null
+      val dir = if (dirPath != null) VirtualFileManager.getInstance().refreshAndFindFileByNioPath(dirPath) else null
       if (dir == null) {
         throw IOException("unable to create target directory: path=$schemaPath")
       }

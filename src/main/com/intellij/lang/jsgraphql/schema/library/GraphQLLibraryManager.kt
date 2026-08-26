@@ -9,8 +9,7 @@ import com.intellij.openapi.diagnostic.debug
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.diagnostic.runAndLogException
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.vfs.JarFileSystem
-import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.openapi.vfs.StandardFileSystems
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VfsUtilCore
 import com.intellij.openapi.vfs.VirtualFile
@@ -233,8 +232,8 @@ class GraphQLLibraryManager(private val project: Project) {
     val definitionsDirUrl = javaClass.getClassLoader().getResource(DEFINITIONS_RESOURCE_DIR) ?: return null
     val urlParts = URLUtil.splitJarUrl(definitionsDirUrl.file) ?: return null
     val jarPath = PathUtil.toSystemIndependentName(urlParts.first) ?: return null
-    LocalFileSystem.getInstance().refreshAndFindFileByPath(jarPath) ?: return null
-    val jarFile = JarFileSystem.getInstance().refreshAndFindFileByPath(jarPath + URLUtil.JAR_SEPARATOR) ?: return null
+    StandardFileSystems.local().refreshAndFindFileByPath(jarPath) ?: return null
+    val jarFile = StandardFileSystems.jar().refreshAndFindFileByPath(jarPath + URLUtil.JAR_SEPARATOR) ?: return null
     VfsUtil.refreshAndFindChild(jarFile, DEFINITIONS_RESOURCE_DIR)?.takeIf { it.isDirectory && it.isValid } ?: return null
 
     return resolveBundledLibraryDefinition(libraryDescriptor)

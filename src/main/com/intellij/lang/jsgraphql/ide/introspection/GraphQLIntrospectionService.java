@@ -45,7 +45,7 @@ import com.intellij.openapi.project.DumbService;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Ref;
 import com.intellij.openapi.util.text.StringUtil;
-import com.intellij.openapi.vfs.LocalFileSystem;
+import com.intellij.openapi.vfs.StandardFileSystems;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.Consumer;
 import com.intellij.util.containers.ContainerUtil;
@@ -349,7 +349,7 @@ public final class GraphQLIntrospectionService implements Disposable {
               }
             });
 
-            VirtualFile schemaFile = ReadAction.computeBlocking(() -> LocalFileSystem.getInstance().findFileByPath(schemaPath));
+            VirtualFile schemaFile = ReadAction.computeBlocking(() -> StandardFileSystems.local().findFileByPath(schemaPath));
             if (schemaFile != null) {
               introspect.addAction(new NotificationAction(GraphQLBundle.message("graphql.notification.content.open.schema.file")) {
                 @Override

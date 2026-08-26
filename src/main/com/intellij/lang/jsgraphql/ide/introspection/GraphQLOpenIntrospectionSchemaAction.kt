@@ -15,7 +15,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.fileEditor.FileEditorManager
-import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.openapi.vfs.StandardFileSystems
 
 class GraphQLOpenIntrospectionSchemaAction : AnAction(
   GraphQLBundle.messagePointer("graphql.action.open.introspection.schema.title"),
@@ -39,7 +39,7 @@ class GraphQLOpenIntrospectionSchemaAction : AnAction(
       ?.selectedItem
       ?.schemaPointer
       ?.outputPath
-      ?.let { LocalFileSystem.getInstance().findFileByPath(it) }
+      ?.let { StandardFileSystems.local().findFileByPath(it) }
       ?.let { FileEditorManager.getInstance(project).openFile(it, true) }
   }
 }
