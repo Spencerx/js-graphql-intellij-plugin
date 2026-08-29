@@ -135,7 +135,6 @@ exports_files(
         "resources/colorSchemes/GraphQLLanguageDarcula.xml",
         "resources/colorSchemes/GraphQLLanguageDefault.xml",
         "resources/colorSchemes/GraphQLLanguageMonokai.xml",
-        "plugin-content.yaml",
     ],
     visibility = ["//visibility:public"],
 )
